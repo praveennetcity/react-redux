@@ -1,0 +1,177 @@
+<html>
+
+<head>
+  <!-- Navigation
+    
+  1) Mapping Users to GetUser Names
+  2) Differnce between null and undefined 
+  3) Hoisting 
+  4) Closures
+  -->
+
+</head>
+
+<body>
+  <script>
+    const users = [{
+        id: 1,
+        name: 'john',
+        isActive: true,
+        age: 50
+      },
+      {
+        id: 2,
+        name: 'david',
+        isActive: false,
+        age: 30
+      },
+      {
+        id: 3,
+        name: 'pom',
+        isActive: true,
+        age: 60
+      },
+
+
+    ]
+
+
+    const names = users.sort((user1, user2) => (user1.age < user2.age ? -1 : 1)).filter((user) => user.isActive).map((
+      user) => user.name)
+    console.log(names);
+
+    /*Question 
+    console.log(foo);
+     foo = 1;
+     question 2
+     console.log(foo);
+     var foo = 2; 
+     question 3
+     foo = 3;
+     console.log(foo);
+      var foo
+     */
+    /*
+      Create a counter function which has increment and getValue fundtionality
+    */
+    const privateCounter = () => {
+      let count = 0;
+
+      return {
+        increment: (val = 1) => {
+          count += val;
+        },
+
+        getValue: () => {
+          return count;
+        }
+      }
+
+    }
+
+    let counter = privateCounter();
+    counter.increment();
+    counter.increment();
+    console.log(counter.getValue());
+
+    /* CUrrying 
+      create a currying function 
+    */
+
+    /* Write a function to append tow array */
+    //counter
+
+    let arr1 = [1, 2, 3];
+    let arr2 = [4, 5, 6];
+    let arr3 = [...arr1, ...arr2];
+
+    console.log(arr3);
+
+    /* Check that user with that name exists */
+
+    const isNameExists = (name, arr) => arr.some((el) => el.name === name);
+    // const isNameExists = (name , arr) => {
+    //   const index = arr.findIndex( (el) => el.name === name );
+    //   return index > 0;
+    // }
+
+    /* Sorting */
+
+    const sortArr = [3, 5, 1];
+    const result = sortArr.sort((a, b) => a > b ? -1 : 1);
+
+    /* Implement Range */
+
+    const range = (start, end) => {
+      return [...Array(end).keys()].map(el => el + start);
+    }
+
+    /*find the number of occurenes of minimum value in the list */
+
+    const minarr = [1, 2, 3, 1, 1];
+    const minValue = Math.min(...minarr);
+    const minArr = minarr.filter((el) => el === minValue);
+    console.log(minArr.length);
+
+    //Debounce function 
+    // will be delayed after some time after
+
+    const debounce = (func, timeout = 300) => {
+      let timer;
+      return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          func.apply(this, args);
+        }, timeout);
+      };
+    }
+
+    const saveInput = (name) => {
+      console.log("saveInput", name);
+    }
+
+    const processChange = debounce(saveInput, 2000);
+
+    processChange('foo');
+    processChange('foo');
+    processChange('foo');
+
+
+    /* Throttle exceuted immediately */
+
+
+    /* fibonnaci series */
+
+    const fibboSeries = (num) => {
+      if (num < 2) {
+        return 1;
+      } else {
+        return fibboSeries(num - 2) + fibboSeries(num - 1);
+      }
+
+    }
+
+    /* FUnction */
+
+
+
+    const findLowest = () => {
+      var lowestArray = [4, 5, 1, 6, 0, 9, 10, 34];
+      var highestArray = [4, 5, 1, 6, 0, 9, 10, 34];
+      //low
+      lowestArray.sort((a, b) => a - b);
+      let [first, second] = lowestArray.slice(0, 2);
+      console.log(first, second);
+      //high
+      highestArray.sort((a, b) => b - a);
+      let [hFirst, hSecond] = highestArray.slice(0, 2);
+      console.log(hFirst, hSecond);
+
+    }
+  </script>
+
+
+</body>
+
+
+</html>
